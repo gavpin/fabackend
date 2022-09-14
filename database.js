@@ -1,14 +1,28 @@
-const mysql = require("mysql");
+const sqlite3 = require('sqlite3').verbose();
 
-var properties = {
-  host: "fintechsg08.mysql.database.azure.com",
+
+var connection = new sqlite3.Database('./shopping.db', (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the shopping database.');
+});
+
+module.exports = { connection };
+
+
+//MY SQL 
+/* var properties = {
+  host: "yourdb.mysql.database.azure.com",
   port: 3306,
-  user: "fintechlab@fintechsg08",
-  password: "FinTechSG2021",
+  user: "you@yourdb",
+  password: "FinTechSG2022",
   database: "market",
 };
 
 var connection = mysql.createConnection(properties);
+
+
 
 connection.connect((errors) => {
   if (errors) {
@@ -20,6 +34,4 @@ connection.connect((errors) => {
 
 setInterval(() => {
   connection.query("select 1");
-}, 60 * 1000);
-
-module.exports = { connection };
+}, 60 * 1000); */
